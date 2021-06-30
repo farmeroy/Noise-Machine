@@ -10,6 +10,17 @@
         </script>
     </head>
     <body>
+        <template id="settingsTemp">
+            <h2></h2>
+            <input type="range" min="-1" max="1.0" step="0.01" value="0.5" name="volume">
+            <select>
+            <option value="sine" selected>Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            </select>
+            <button  class='play-on'>Mute</button>
+        </template>
+
         <h1>Noise Machine</h1>
             <div class='main-controls'>
                 <button id="play-all">Mute All</button>

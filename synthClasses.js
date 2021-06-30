@@ -97,17 +97,12 @@ class NoiseOscillator extends OscillatorNode {
     const settingsEl = document.createElement("div");
     settingsEl.setAttribute("id", `modal ${btn.id}`);
     settingsEl.className = "modal";
-    settingsEl.innerHTML = `
-  <h2>Note: ${btn.id} - ${parseFloat(this.frequency.value).toFixed(2)}Hz</h2>
-  <input type="range" min="-1" max="1.0" step="0.01" value="0.5" name="volume">
-  <select>
-  <option value="sine" selected>Sine</option>
-  <option value="square">Square</option>
-  <option value="sawtooth">Sawtooth</option>
-  </select>
-  <button id='play ${btn.id}' class='play-on'>Mute</button>
-  
-  `;
+    const settingsTemp = document.getElementById("settingsTemp");
+    const settingsBody = document.importNode(settingsTemp.content, true);
+    settingsBody.querySelector('h2').textContent = `Note: ${btn.id} - ${parseFloat(this.frequency.value).toFixed(2)}Hz`;
+    settingsBody.querySelector('button').setAttribute('id', `play ${btn.id}`);
+    settingsEl.append(settingsBody);
+    
     const volumeRange = settingsEl.querySelector("input");
     const waveSelect = settingsEl.querySelector("select");
     const playBtn = settingsEl.querySelector("button");
